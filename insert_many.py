@@ -19,26 +19,26 @@ def main():
     client = MongoClient(MONGO_URI)
     db = client.bank
 
-    account_collection = db.accounts
+    accounts_collection = db.accounts
 
     new_accounts = [
         {
-            "account_holder": "Linus Torvalds",
-            "account_id": "XXXXXXXXXXXX",
+            "account_id": "MDB011235813",
+            "account_holder": "Ada Lovelace",
             "account_type": "checking",
-            "balance": 503524,
+            "balance": 60218,
+            "last_updated": datetime.datetime.now(datetime.UTC),
+        },
+        {
+            "account_id": "MDB829000001",
+            "account_holder": "Muhammad ibn Musa al-Khwarizmi",
+            "account_type": "savings",
+            "balance": 267914296,
             "last_updated": datetime.datetime.now(datetime.UTC),
         },
         {
             "account_holder": "Bill Gates",
-            "account_id": "YYYYYYYYYYYY",
-            "account_type": "checking",
-            "balance": 100000,
-            "last_updated": datetime.datetime.now(datetime.UTC),
-        },
-        {
-            "account_holder": "Bill Gates",
-            "account_id": "ZZZZZZZZZZZZ",
+            "account_id": "MDB829000002",
             "account_type": "savings",
             "balance": 100000,
             "last_updated": datetime.datetime.now(datetime.UTC),
@@ -46,7 +46,7 @@ def main():
     ]
 
 
-    result = account_collection.insert_many(new_accounts)
+    result = accounts_collection.insert_many(new_accounts)
 
     document_ids = result.inserted_ids
     print("# of documents inserted: " + str(len(document_ids)))

@@ -4,6 +4,8 @@ import datetime
 from dotenv import load_dotenv
 from pymongo import MongoClient
 
+from bson.objectid import ObjectId
+
 load_dotenv()
 
 def create_connection():
@@ -21,18 +23,11 @@ def main():
 
     accounts_collection = db.accounts
 
-    new_account = {
-        "account_holder": "Linus Torvalds",
-        "account_id": "MDB829001337",
-        "account_type": "checking",
-        "balance": 50352434,
-        "last_updated": datetime.datetime.now(datetime.UTC),
-    }
+    document_to_find = { "_id": ObjectId("673d0cf1ad1716fe0a0aee72")}
 
-    result = accounts_collection.insert_one(new_account)
+    result = accounts_collection.find_one(document_to_find)
 
-    document_id = result.inserted_id
-    print(f"_id of inserted document: {document_id}")
+    print(result)
 
     client.close()
 

@@ -1,8 +1,12 @@
 import os
 import datetime
+import pprint
 
 from dotenv import load_dotenv
 from pymongo import MongoClient
+
+from bson.objectid import ObjectId
+
 
 load_dotenv()
 
@@ -21,21 +25,25 @@ def main():
 
     accounts_collection = db.accounts
 
-    new_account = {
-        "account_holder": "Linus Torvalds",
-        "account_id": "MDB829001337",
-        "account_type": "checking",
-        "balance": 50352434,
-        "last_updated": datetime.datetime.now(datetime.UTC),
-    }
+    documents_to_find = { "balance": { "$gte": 0 }}
 
-    result = accounts_collection.insert_one(new_account)
+    cursor = accounts_collection.find({})
 
-    document_id = result.inserted_id
-    print(f"_id of inserted document: {document_id}")
-
+    num_docs = 0
+    for document in cursor: 
+        num_docs += 1
+        pprint.pp(document)
+        print()
+    
+    print("# of documents found: " + str(num_docs))
     client.close()
 
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
+
