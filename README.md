@@ -7,7 +7,7 @@ Some reference samples for PyMongo
 ```python
 DB_HOST=myatlasclusteredu.za9nd.mongodb.net
 DB_USER=myAtlasDBUser
-DB_PASS=Test.123!
+DB_PASS=Password
 DB_OPTIONS=?retryWrites=true&w=majority
 ```
 
