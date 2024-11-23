@@ -43,6 +43,20 @@ def main():
             "balance": 100000,
             "last_updated": datetime.datetime.now(datetime.UTC),
         },
+        {
+            "account_holder": "Tom Sawyer",
+            "account_id": "MDB829000002",
+            "account_type": "savings",
+            "balance": 966,
+            "last_updated": datetime.datetime.now(datetime.UTC),
+        },
+        {
+            "account_holder": "Jane Doe",
+            "account_id": "MDB829000002",
+            "account_type": "savings",
+            "balance": 511,
+            "last_updated": datetime.datetime.now(datetime.UTC),
+        },
     ]
 
 
